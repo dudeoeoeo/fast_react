@@ -1,5 +1,5 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import React, { useState } from 'react';
+import styled, { keyframes, ThemeProvider } from 'styled-components';
 
 const StyledComponentExample = () => {
     // Create a Title component that'll render an <h1> tag with some styles
@@ -92,6 +92,44 @@ const StyledComponentExample = () => {
         font-size: 1.2rem;
     `;
     // Use Title and Wrapper like any other React component – except they're styled!
+    
+    const Button1 = styled.button`
+        font-size: 1em;
+        margin: 1em;
+        padding: 0.25em 1em;
+        border-radius: 3px;
+
+        /* Color the border and text with theme.main */
+        color: ${(props) => props.theme.color};
+        border: 2px solid ${(props) => props.theme.borderColor};
+    `;
+
+        // We are passing a default theme for Buttons that arent wrapped in the ThemeProvider
+        Button1.defaultProps = {
+            theme: {
+                // main: "palevioletred"
+                color: "red",
+                borderColor: "blue",
+            }
+        }
+
+        // Define what props.theme will look like
+        // const theme = {
+        //     color: "green",
+        //     borderColor: "pink",
+        // };
+        
+        const redTheme = {
+            color: 'red',
+            borderColor: 'red',
+        };
+        const greenTheme = {
+            color: 'green',
+            borderColor: 'green',
+        };
+
+        const [theme, setTheme] = useState(greenTheme);
+
     return(
         <>
             {/* <Wrapper>
@@ -124,6 +162,16 @@ const StyledComponentExample = () => {
                 <PasswordInput placeholder="A bigger password input" size="2em" />
             </div>
             <Rotate>&lt; 💅🏾 &gt;</Rotate>
+            <br />
+
+            <button onClick={() => setTheme(redTheme)}>red</button>
+            <button onClick={() => setTheme(greenTheme)}>green</button>
+            
+
+            <ThemeProvider theme={theme}>
+                <Button1>Normal</Button1>
+                <Button1>Themed</Button1>
+            </ThemeProvider>
         </>
     );
 };
