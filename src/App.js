@@ -5,15 +5,17 @@ import StyledComponentExample from './components/StyledComponents/StyledComponen
 import Text from './components/RecoilExample/Text';
 import TodoList from './components/RecoilExample/TodoList';
 import CurrentUserInfo from './components/RecoilExample/fetch/CurrentUserInfo';
+import TestMocking from './components/mocks/TestMocking';
 
 function App() {
   return (
     // <StyledComponentExample />
     <RecoilRoot>
-      <FontButton />
+      {/* <FontButton />
       <Text />
       <TodoList />
-      <CurrentUserInfo />
+      <CurrentUserInfo /> */}
+      <TestMocking />
     </RecoilRoot>
   );
 }
